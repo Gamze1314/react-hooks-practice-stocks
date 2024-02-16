@@ -1,12 +1,22 @@
 import React from "react";
 
-function Stock() {
+function Stock({ stock, addOnPortfolio, onRemoveStock, portfolio }) {
+  const { name, price } = stock;
+
+  function handleClick(id) {
+      addOnPortfolio(id);  
+  }
+
+  function handleSell(stock) {
+    onRemoveStock(stock);
+  }
+
   return (
     <div>
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">{"Compant Name"}</h5>
-          <p className="card-text">{"Stock Price"}</p>
+      <div onClick={() => handleClick(stock.id)} className="card">
+        <div onClick={() => handleSell(stock)} className="card-body">
+          <h5 className="card-title">{name}</h5>
+          <p className="card-text">{price}</p>
         </div>
       </div>
     </div>
